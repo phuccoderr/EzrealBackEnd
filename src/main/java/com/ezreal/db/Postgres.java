@@ -1,6 +1,5 @@
 package com.ezreal.db;
 
-import com.ezreal.config.Dotenv;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
