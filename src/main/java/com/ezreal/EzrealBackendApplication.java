@@ -16,24 +16,22 @@ public class EzrealBackendApplication {
 		SpringApplication.run(EzrealBackendApplication.class, args);
 	}
 
-	@Bean
-	ApplicationRunner Runner() {
-		return args -> {
-			Thread.startVirtualThread(() -> {
-				var postgres = new Postgres();
-                try {
-                    var connection = postgres.Connect();
-					connection.beginRequest();
-					var defStmt = new DefStmt();
-					var stmt = connection.prepareStatement(defStmt.test());
-					var rs = stmt.executeQuery();
-					while (rs.next()) {
-						System.out.println(rs.getString(1));
-					}
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-		};
-	}
+//	@Bean
+//	ApplicationRunner Runner() {
+//		return args -> {
+//			Thread.startVirtualThread(() -> {
+//				var postgres = new Postgres();
+//                try (var connection = postgres.Connect()) {
+//					var defStmt = new DefStmt();
+//					var stmt = connection.prepareStatement(defStmt.test());
+//					var rs = stmt.executeQuery();
+//					while (rs.next()) {
+//						System.out.println(rs.getString("email"));
+//					}
+//                } catch (SQLException e) {
+//                    System.out.println("khong duoc tim thay");
+//                }
+//            });
+//		};
+//	}
 }
